@@ -7,8 +7,7 @@ class Board
       3 => :yellow, 
       4 => :blue, 
       5 => :pink, 
-      6 => :cyan, 
-      7 => :white
+      6 => :cyan
             }
 
   # @rounds is array of each 4-color guess with roundnumber - 1 as index
@@ -19,10 +18,16 @@ class Board
     @feedback = []
   end
 
-  def add_round(input, code)
+  def add_round input, code
     # adds user input to Board @rounds instance
     @rounds << input
     add_feedback(input, code)
+  end
+
+  def render_code code
+    code.each do |color|
+      print "|" + " #{color} ".color(COLORS[color]) + "|"
+    end
   end
 
   # Renders playing field of all rounds stored

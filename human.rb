@@ -28,7 +28,7 @@ class Human < Player
     end
 
     def valid_guess?(input)
-      if input.uniq.size.between?(1,4) && input.all? { |x| x.between?(1,7) }
+      if input.uniq.size.between?(1,4) && input.all? { |x| x.between?(1,6) }
         true
       else
         false

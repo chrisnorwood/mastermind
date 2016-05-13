@@ -28,6 +28,10 @@ class Game
         puts "You lost!".color(:red_text)
       end
       
+      print "The code was: "
+      @board.render_code(@code)
+      print "\n"
+      
       replay_prompt
     end
   end
