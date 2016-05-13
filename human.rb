@@ -1,10 +1,23 @@
 class Human < Player
-  def break
-    input = prompt
+  def prompt
+    print_query
+      
+    guess = gets.chomp
+    exit if guess == 'exit'
+
+    guess = guess.split(',').map{ |i| i.to_i}
+
+    if !valid_guess?(guess)
+      print "#{guess} is an invalid selection.\n\n"
+      prompt
+    else
+      guess
+    end
   end
 
   private
-    def prompt
+
+    def print_query
       print "Enter up to 4 unique colors, separated by commas (e.g. 1,4,5,6)\n".rjust(56, ' ')
       
       colors = Board::COLORS
@@ -12,19 +25,10 @@ class Human < Player
         print "#{key} = " + "  ".color(color) + "  "
       end
       print ": "
-      
-      result = gets.chomp.split(',').map{ |i| i.to_i}
-
-      if !valid_guess?(result)
-        puts "Invalid selection."
-        prompt
-      else
-        p result
-      end
     end
 
     def valid_guess?(input)
-      if input.uniq.size == 4 && input.all? { |x| x > 0 && x < 7 }
+      if input.uniq.size.between?(1,4) && input.all? { |x| x.between?(1,7) }
         true
       else
         false
