@@ -1,5 +1,11 @@
 class Computer < Player
 
+  # returns array of computer's guess
+  def prompt
+    sleep 2
+    code
+  end
+
   # returns array of size 4, containing unique 
   # combination of COLOR keys
   def code

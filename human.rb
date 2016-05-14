@@ -1,4 +1,6 @@
 class Human < Player
+  
+  # returns array of validated player choice
   def prompt
     print_query
       
@@ -13,6 +15,11 @@ class Human < Player
     else
       guess
     end
+  end
+
+  def code
+    puts "Please choose a code for the AI to solve."
+    return prompt
   end
 
   private

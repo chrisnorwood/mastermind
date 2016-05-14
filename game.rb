@@ -7,8 +7,14 @@ class Game
   
   def initialize board
     @board = board
-    @maker = Computer.new
-    @breaker = Human.new
+    
+    if computer_maker?
+      @maker = Computer.new
+      @breaker = Human.new
+    else
+      @maker = Human.new
+      @breaker = Computer.new
+    end
 
     @code = @maker.code
   end
@@ -31,7 +37,7 @@ class Game
       print "The code was: "
       @board.render_code(@code)
       print "\n"
-      
+
       replay_prompt
     end
   end
@@ -50,6 +56,21 @@ class Game
       else
         puts "Invalid input."
         replay_prompt
+      end
+    end
+
+    def computer_maker?
+      puts "Would you like to make or break the code? Enter make or break."
+      input = gets.chomp
+
+      case input
+      when 'break'
+        true
+      when 'make'
+        false
+      else
+        puts "Invalid input."
+        computer_maker?
       end
     end
 
