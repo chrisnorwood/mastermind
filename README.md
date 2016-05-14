@@ -1,1 +1,2 @@
-Mastermind Game project for The Odin Project
+# Mastermind Game project for The Odin Project
+
